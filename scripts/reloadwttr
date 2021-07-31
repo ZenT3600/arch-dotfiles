@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+curl -s wttr.in | awk '{$1=$1};1' | grep '°C' | head -n 1 | awk -F " " '{print $(NF-1)" "$NF}' | sed "s,\x1B\[[0-9;]*m,,g" > .wttr.in

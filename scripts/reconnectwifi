@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+
+{ [ -n "$WIFINAME" ]; } && { echo "OK"; [ -n "$WIFIPASS" ] && nmcli device wifi connect "$WIFINAME" password "$WIFIPASS" || nmcli device wifi connect "$WIFINAME"; } || { echo "NO"; }

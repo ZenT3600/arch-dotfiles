@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+wal -i ~/bgs/ --saturate 0.75
