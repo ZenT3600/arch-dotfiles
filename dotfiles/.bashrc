@@ -12,7 +12,7 @@ source ~/.wificreds
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
 
-find ~/tools/color-scripts/color-scripts -type f | shuf -n 1 | xargs -I {} sh -c "bash {} && echo -e \"\nFile: \$(basename {})\""
+find -L ~/color-motds -type f | shuf -n 1 | xargs -I {} sh -c "bash {} && echo -e \"\nFile: \$(basename {})\""
 
 alias _cat="/usr/bin/cat"
 alias cat="bat"
