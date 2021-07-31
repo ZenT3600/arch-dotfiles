@@ -33,9 +33,5 @@ PS1=$(tput setaf 2; inecho '['; tput setaf 6; inecho '\u'; tput setaf 4; inecho 
 if [[ -n $SSH_CONNECTION ]]; then
 	IP=$(echo $SSH_CONNECTION | awk '{print $1}')
 	#IP=$(who | awk '{print $5}' | tr -d \(\))	<----	Why did I even think this implementation could work lmao?
-	cd /tmp/.X11-unix
-	for x in X*; do
-		DISPLAY=":${x#X}" herbe "Accepted SSH Connection From IP $IP" &
-	done
-	cd
+	sshherbe "Accepted SSH Connection From IP $IP" &
 fi
