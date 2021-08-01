@@ -18,8 +18,8 @@ randomcolors
 
 alias _cat="/usr/bin/cat"
 alias cat="bat"
-alias la="ls -la"
-alias ls="ls -l --color=auto"
+alias la="ls -laH"
+alias ls="ls -lH --color=auto"
 alias inecho="echo -n"
 
 export EDITOR="vim"
