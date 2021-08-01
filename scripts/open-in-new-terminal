@@ -1,0 +1,1 @@
+st -e sh -c "$(echo ${@// / }) && exit"
