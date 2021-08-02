@@ -23,6 +23,8 @@ alias ls="ls -lH --color=auto"
 alias inecho="echo -n"
 
 export EDITOR="vim"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+man 2 select
 export NNN_SSHFS="sshfs -o follow_symlinks"
 export NNN_TRASH=1
 

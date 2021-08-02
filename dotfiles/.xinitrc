@@ -26,7 +26,7 @@ bartemp() {
 }
 
 bardisk() {
-	echo -e "$(df | grep "/dev/sdb2" | awk '{print $5}') D"
+	echo -e "$(df | grep "/dev/sda2" | awk '{print $5}') D"
 }
 
 while true; do
