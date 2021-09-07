@@ -1,4 +1,5 @@
 #!/usr/bin/bash
 
-depend toriptables || exit 1
-{ ip route get "1.2.3.4" &> /dev/null; } && { toriptables -i | awk '{print $NF}' | tail -n1 | sed "s,\x1B\[[0-9;]*m,,g"; } || { echo "Disconnected"; }
+#depend toriptables || exit 1
+depend jq || exit 1
+{ ip route get "1.2.3.4" &> /dev/null; } && { curl -s https://api.myip.com | jq -r .ip; } || { echo "Disconnected"; }
