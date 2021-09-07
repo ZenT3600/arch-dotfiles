@@ -4,6 +4,7 @@
 alsactl --file ~/.config/asound.state restore
 
 ### Setup Desktop Enviroment's Settings
+export PATH="$PATH:$HOME/.local/bin"
 reloadwal
 
 ### Add Data to DWM
@@ -29,13 +30,18 @@ bardisk() {
 	echo -e "$(df | grep "/dev/sda2" | awk '{print $5}') D"
 }
 
+barpubip() {
+	{ ip route get "1.2.3.4" &> /dev/null; } && { toriptables -i | awk '{print $NF}' | tail -n1 | sed "s,\x1B\[[0-9;]*m,,g"; } || { echo "Disconnected"; }
+}
+
 while true; do
 	xsetroot -name " $(barbattery) | $(bardisk) | $(barip) | $(bartemp) | $(bardate) "
 	sleep 1
 done &
 
 ### Start Desktop Enviroment
-picom &
+picom --config /etc/xdg/picom.conf &
 #xautolock -time 30 -locker slock &
+xset s off
+xset -dpms
 exec dwm
-

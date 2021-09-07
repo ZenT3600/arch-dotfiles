@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+depend git || exit 1
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do

@@ -1,1 +1,5 @@
+#!/usr/bin/bash
+
+depend st || exit 1
+
 st -e sh -c "$(echo ${@// / }) && exit"

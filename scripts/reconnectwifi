@@ -1,4 +1,5 @@
 #!/usr/bin/bash
 
+depend nmcli || exit 1
 
 { [ -n "$WIFINAME" ]; } && { echo "OK"; [ -n "$WIFIPASS" ] && nmcli device wifi connect "$WIFINAME" password "$WIFIPASS" || nmcli device wifi connect "$WIFINAME"; } || { echo "NO"; }
