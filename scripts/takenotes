@@ -1,0 +1,42 @@
+#!/usr/bin/bash
+
+depend tex || exit 1
+depend zathura || exit 1
+depend inotifywait || exit 1
+depend pandoc || exit 1
+
+if [ -z "$1" ]; then
+	exit -1
+fi
+
+author="Matteo Leggio"
+date=$(date +"%d-%m-%Y")
+notedir="$HOME/notes"
+mkdir -p $notedir
+notename="$notedir/$1"
+notenamemd="$notename.md"
+notenamepdf="$notename.pdf"
+
+if [ ! -f $notenamemd ]; then
+	touch $notenamemd
+	echo "# $1" > $notenamemd
+	echo "> $author, $date" >> $notenamemd
+	echo "" >> $notenamemd
+	echo "---" >> $notenamemd
+	echo "" >> $notenamemd
+	echo "" >> $notenamemd
+fi
+compileCommand="pandoc $notenamemd -o $notenamepdf"
+$compileCommand
+
+# Keep $notenamemd as literal variable instead of escaping the $, as the
+#`open-in-new-terminal binary will not be able to evaluate it otherwise
+# open-in-new-terminal "echo \"Started listening for changes on $notenamemd with compile command $compileCommand\" && inotifywait -e close_write,moved_to,create,modify -m . | while read -r directory events filename; do if [ \"\$filename\" = \"$notenamemd\" ]; then echo -n \"Compiling... \" && $compileCommand && echo \"Done\"; fi; done" & > /dev/null
+
+zathura $notenamepdf & > /dev/null
+zathuraPID=$!
+
+vim -c "autocmd BufWritePost $notenamemd silent !$compileCommand &" $notenamemd
+
+pkill inotifywait
+kill $zathuraPID
