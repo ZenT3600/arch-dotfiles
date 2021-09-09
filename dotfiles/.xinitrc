@@ -27,7 +27,8 @@ bartemp() {
 }
 
 bardisk() {
-	echo -e "$(df | grep "/dev/sda2" | awk '{print $5}') D"
+	# echo -e "$(df | awk '{print $5}'| grep "/") D"
+	echo -e "$(df | grep -E '/$' | awk '{print $5}') D"
 }
 
 barpubip() {

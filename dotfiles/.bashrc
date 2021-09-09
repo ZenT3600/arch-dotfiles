@@ -22,6 +22,7 @@ alias la="ls -laH"
 alias ls="ls -lH --color=auto"
 alias ncls="ls --color=never"
 alias inecho="echo -n"
+alias vim="nvim"
 
 export EDITOR="vim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

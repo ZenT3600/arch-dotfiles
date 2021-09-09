@@ -1,10 +1,12 @@
 #!/usr/bin/bash
 
+set -e
+
 DEVICE=$1
 OUTPATH="$HOME/screenshots"
 OUTNAME="$(date -Ins).png"
 
-depend mpv || exit 1
+depend mpv
 
 echo "Saving screenshot from device/file $DEVICE on $OUTPATH/$OUTNAME"
 mpv $DEVICE --frames=1 -o $OUTPATH/$OUTNAME > /dev/null && echo "Done" || echo "Failed"

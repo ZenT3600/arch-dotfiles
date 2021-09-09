@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
-depend st || exit 1
+set -e
+
+depend st
 
 st -e sh -c "$(echo ${@// / }) && exit"

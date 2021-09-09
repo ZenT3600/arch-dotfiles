@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
-depend git || exit 1
-depend pass || exit 1
+set -e
+
+depend git
+depend pass
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do

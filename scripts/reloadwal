@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
-depend wal || exit 1
+set -e
+
+depend wal
 
 wal -i ~/bgs/ --saturate 0.75

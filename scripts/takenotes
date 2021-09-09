@@ -1,16 +1,17 @@
 #!/usr/bin/bash
 
-depend tex || exit 1
-depend zathura || exit 1
-depend inotifywait || exit 1
-depend pandoc || exit 1
+set -e
+
+depend tex
+depend zathura
+depend pandoc
 
 if [ -z "$1" ]; then
 	exit -1
 fi
 
 author="Matteo Leggio"
-date=$(date +"%d-%m-%Y")
+date=$(date +"%d-%m-%Y %H:%M")
 notedir="$HOME/notes"
 mkdir -p $notedir
 notename="$notedir/$1"
@@ -36,7 +37,7 @@ $compileCommand
 zathura $notenamepdf & > /dev/null
 zathuraPID=$!
 
-vim -c "autocmd BufWritePost $notenamemd silent !$compileCommand &" $notenamemd
+nvim -c "autocmd BufWritePost $notenamemd silent !$compileCommand &" $notenamemd
 
-pkill inotifywait
+# pkill inotifywait
 kill $zathuraPID
