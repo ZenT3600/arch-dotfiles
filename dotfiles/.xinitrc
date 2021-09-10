@@ -19,7 +19,7 @@ barip() {
 }
 
 barbattery() {
-	echo -e "$(cat /sys/class/power_supply/BAT1/capacity)% B"
+	echo -e "$(cat /sys/class/power_supply/BAT1/capacity)% B$(cat /sys/class/power_supply/BAT1/status | grep -v Discharging | xargs -I {} echo " {}")"
 }
 
 bartemp() {
@@ -41,8 +41,8 @@ while true; do
 done &
 
 ### Start Desktop Enviroment
+# Picom can be removed for power management reasons
 picom --config /etc/xdg/picom.conf &
-#xautolock -time 30 -locker slock &
 xset s off
 xset -dpms
 exec dwm

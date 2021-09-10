@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+xrandr --output eDP-1 --brightness 0.75
+
 export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin"
 
 reloadwttr
