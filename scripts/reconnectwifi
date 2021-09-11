@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: reconnectwifi
+# Description: Utility script to quickly reconnect to my home wifi with credentials given in enviromental variables
+# Usage:
+#	reconnectwifi
 
 set -e
 

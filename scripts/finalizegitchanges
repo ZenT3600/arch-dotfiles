@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: finalizegitchanges
+# Description: Shortcut for adding, committing and pushing a git repo
+# Usage:
+#	finalizegitchanges -m "Reason" [-s "Different pass store"]
 
 set -e
 

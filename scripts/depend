@@ -1,3 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: depend
+# Description: When called while supplying the name of a binary the program will crash if the binary is not installed
+# Usage:
+#	set -e
+#	depend binary
 
 which "$1" &> /dev/null || { echo "Did not find dependency $1"; exit 64; }

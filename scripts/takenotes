@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: takenotes
+# Description: Utility script to take Markdown notes and automatically convert them to PDF with live preview
+# Usage:
+#	takenotes "name"
 
 setAuthor() {
 	echo "Setting your user's real name... "

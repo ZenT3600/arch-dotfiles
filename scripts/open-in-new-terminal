@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: open-in-new-terminal
+# Description: Start a specified command in a new ST window
+# Usage:
+#	open-in-new-terminal mycommand
 
 set -e
 

@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: sshherbe
+# Description: Display an herbe notification on all X sessions
+# Usage:
+#	sshherbe "Message"
 
 set -e
 

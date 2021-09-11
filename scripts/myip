@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: myip
+# Description: fetch the computer's current external IP
+# Usage:
+#	myip
 
 set -e
 

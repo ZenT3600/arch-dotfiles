@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+# Author: zent
+# File: devicescreenshot
+# Description: Takes a screenshot of a video device. Mostly used for /dev/video (AKA the computer's camera)
+# Usage:
+#	devicescreenshot /path/to/device
 
 set -e
 
