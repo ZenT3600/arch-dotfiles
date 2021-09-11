@@ -1,16 +1,28 @@
 #!/usr/bin/bash
 
+setAuthor() {
+	echo "Setting your user's real name... "
+	echo -n "Full Name: "
+	read fullname
+	sudo chfn -f "$fullname" "$1"
+	echo "Done"
+	author=$fullname
+}
+
 set -e
 
+depend sudo
 depend tex
 depend zathura
 depend pandoc
+depend readgecos
 
 if [ -z "$1" ]; then
 	exit -1
 fi
 
-author="Matteo Leggio"
+author=$(readgecos)
+[ -z "$author" ] && setAuthor "$(whoami)"
 date=$(date +"%d-%m-%Y %H:%M")
 notedir="$HOME/notes"
 mkdir -p $notedir

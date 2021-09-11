@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+whoami | xargs -I {} grep {} /etc/passwd | awk -F: '{print $5}'
