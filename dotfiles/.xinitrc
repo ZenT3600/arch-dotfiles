@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+SHELL="/usr/bin/xonsh"
+
 ### Setup Audio Driver's Settings
 alsactl --file ~/.config/asound.state restore
 
@@ -19,7 +21,7 @@ barip() {
 }
 
 barbattery() {
-	echo -e "$(cat /sys/class/power_supply/BAT1/capacity)% B$(cat /sys/class/power_supply/BAT1/status | grep -v Discharging | xargs -I {} echo " {}")"
+	echo -e "$(cat /sys/class/power_supply/BAT*/capacity)% B$(cat /sys/class/power_supply/BAT*/status | grep -v Discharging | xargs -I {} echo " {}")"
 }
 
 bartemp() {

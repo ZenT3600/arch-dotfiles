@@ -2,10 +2,7 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-xrandr --output eDP-1 --brightness 0.75
+echo 30000 > /sys/class/backlight/intel_backlight/brightness
 
 export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin"
 
@@ -35,7 +32,6 @@ alias scrot="date -Ins | xargs -I {} scrot screenshots/{}.png"
 
 setxkbmap it
 PS1=$(tput setaf 2; inecho '['; tput setaf 6; inecho '\u'; tput setaf 4; inecho '@'; tput setaf 6; inecho '\h'; tput setaf 5; inecho ' \W'; tput setaf 2; inecho ']'; tput sgr0; inecho '\$ ')
-[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 
 if [[ -n $SSH_CONNECTION ]]; then
 	IP=$(echo $SSH_CONNECTION | awk '{print $1}')

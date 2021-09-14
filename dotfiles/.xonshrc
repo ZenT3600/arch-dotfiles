@@ -1,0 +1,4 @@
+source-bash "echo loading xonsh foreign shell"
+
+# Startup Pixelart
+randomcolors
