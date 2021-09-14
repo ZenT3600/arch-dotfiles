@@ -2,7 +2,8 @@
 # ~/.bashrc
 #
 
-echo 30000 > /sys/class/backlight/intel_backlight/brightness
+BRIGHTNESS=50000
+echo $BRIGHTNESS > /sys/class/backlight/intel_backlight/brightness
 
 export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin"
 

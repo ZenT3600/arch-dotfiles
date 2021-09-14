@@ -1,4 +1,13 @@
+#!/usr/bin/python
+
 source-bash "echo loading xonsh foreign shell"
 
-# Startup Pixelart
+if "STARTED_X" in __xonsh__.env:
+	pass
+elif any(i in __xonsh__.env for i in {"SSH_TTY", "SSH_CLIENT", "SSH_CONNECTION"}):
+    pass
+else:
+    $STARTED_X = True
+    startx
+
 randomcolors
