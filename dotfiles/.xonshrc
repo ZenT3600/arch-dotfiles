@@ -1,7 +1,51 @@
 #!/usr/bin/python
 
+# Utilities
+import requests
+import json
+
+
+def __web_get(url):
+    resp = requests.get(url[0])
+    echo @(resp.text) | jq || echo @(resp.text)
+
+def __web_post(url):
+    resp = requests.post(url[0])
+    echo @(resp.text) | jq || echo @(resp.text)
+
+def __copy(args=None, stdin=None):
+    text = stdin.read() if stdin else ' '.join(args)
+    echo -n @(text.strip()) | xclip -selection clipboard
+    return
+
+def __type_on_window(args=None, stdin=None):
+    from Xlib import X, display
+    
+    windowname = args[0].lower()
+    text = " ".join(args[1:])
+
+    windownames = [line.lstrip() for line in $(wmctrl -lG | awk '{$1=$2=$3=$4=$5=$6=""; print $0}').split("\n") if line.strip()]
+    windowindex = [windownames.index(w) for w in windownames if windowname in w.lower()][0]
+    windowaddress = [line for line in $(wmctrl -lG | awk '{print $1}').split("\n") if line.strip()][windowindex]
+    xdotooloutput = $(xdotool getwindowgeometry @(windowaddress))
+    position = [int(coord) for coord in xdotooloutput.split("\n")[1].split(": ")[1].split("(")[0].split(",")]
+    
+    d = display.Display()
+    s = d.screen()
+    root = s.root
+    root.warp_pointer(*position)
+    d.sync()
+    xdotool type @(text)
+
+aliases["typeon"] = __type_on_window
+aliases["copy"] = __copy
+aliases["webget"] = __web_get
+aliases["webpost"] = __web_post
+
+# Source bash and load .bashrc
 source-bash "echo loading xonsh foreign shell"
 
+# Automatically start X server
 if "STARTED_X" in __xonsh__.env:
 	pass
 elif any(i in __xonsh__.env for i in {"SSH_TTY", "SSH_CLIENT", "SSH_CONNECTION"}):
@@ -10,4 +54,14 @@ else:
     $STARTED_X = True
     startx
 
+# Xontribs
+#       readable-traceback
+xontrib load readable-traceback
+$READABLE_TRACE_STRIP_PATH_ENV=True
+$READABLE_TRACE_REVERSE=True
+
+# Settings
+$XONSH_SHOW_TRACEBACK = True
+
+# Print MOTD
 randomcolors
