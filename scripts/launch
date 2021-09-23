@@ -1,12 +1,23 @@
 #!/usr/bin/bash
 
-BACKPWD=$PWD
-IFS=':' read -ra SPLITPATH <<< "$PATH"
-LIST=("")
-for each in "${SPLITPATH[@]}"
-do
-	LIST+=$(cd $each > /dev/null 2>&1 && ls $each || echo "")
-done
-cd $BACKPWD
-COMMAND=$(( IFS=$'\n'; echo "${LIST[*]}" ) | dmenu)
-$COMMAND
+set -e
+
+depend dmenu_run
+
+#set -e
+#
+#depend dmenu
+#depend open-in-new-terminal
+#
+#BACKPWD=$PWD
+#IFS=':' read -ra SPLITPATH <<< "$PATH"
+#LIST=("")
+#for each in "${SPLITPATH[@]}"
+#do
+#	LIST+=$(cd $each > /dev/null 2>&1 && ls $each || echo "")
+#done
+#cd $BACKPWD
+#COMMAND=$(( IFS=$'\n'; echo "${LIST[*]}" ) | uniq | dmenu)
+#open-in-new-terminal $COMMAND
+
+dmenu_run

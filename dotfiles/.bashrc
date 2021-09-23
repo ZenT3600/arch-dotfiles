@@ -2,7 +2,7 @@
 # ~/.bashrc
 #
 
-BRIGHTNESS=50000
+BRIGHTNESS=$(cat $HOME/.brightness)
 echo $BRIGHTNESS > /sys/class/backlight/intel_backlight/brightness
 
 export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin"
@@ -29,7 +29,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NNN_SSHFS="sshfs -o follow_symlinks"
 export NNN_TRASH=1
 
-alias scrot="date -Ins | xargs -I {} scrot screenshots/{}.png"
+alias scrot="date -Ins | xargs -I {} scrot $HOME/screenshots/{}.png"
 
 setxkbmap it
 PS1=$(tput setaf 2; inecho '['; tput setaf 6; inecho '\u'; tput setaf 4; inecho '@'; tput setaf 6; inecho '\h'; tput setaf 5; inecho ' \W'; tput setaf 2; inecho ']'; tput sgr0; inecho '\$ ')
