@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+# Author: zent
+# File: takenotes_run
+# Description: Utility script to launch the takenotes script from DWM
+# Usage:
+#       takenotes_run
+
+
+NOTES_PATH=$(realpath $HOME/notes)
+
+ls $NOTES_PATH | sed 's/\.[^.]*$//' | uniq | dmenu -l 5 -p "Name: " | xargs -I {} takenotes {}
