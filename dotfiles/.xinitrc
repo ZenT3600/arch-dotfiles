@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-SHELL="/usr/bin/xonsh"
+SHELL="/usr/bin/bash"
 
 ### Setup Audio Driver's Settings
 alsactl --file ~/.config/asound.state restore

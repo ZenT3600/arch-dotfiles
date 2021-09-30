@@ -29,7 +29,7 @@ fi
 author=$(readgecos)
 [ -z "$author" ] && setAuthor "$(whoami)"
 date=$(date +"%d-%m-%Y %H:%M")
-notedir="$HOME/notes"
+notedir=$(realpath "$HOME/notes")
 mkdir -p $notedir
 notename="$notedir/$1"
 notenamemd="$notename.md"
