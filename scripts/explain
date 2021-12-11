@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+# Author: zent
+# File: explain
+# Description: extract a file's comments, used for my own scripts
+# Usage:
+#	explain <file>
+
+set -e
+
+[ -z $1 ] && script="explain"
+[ ! -z $1 ] && script=$1
+
+scriptpath="$HOME/.scripts"
+echo "Path: $scriptpath/$script"
+echo "---"
+cat "$scriptpath/$script" | sed -ne '/^#/p' | tail -n+2

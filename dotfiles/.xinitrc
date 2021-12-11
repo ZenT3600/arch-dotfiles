@@ -44,7 +44,7 @@ done &
 
 ### Start Desktop Enviroment
 # Picom can be removed for power management reasons
-picom --config /etc/xdg/picom.conf &
+# picom --config /etc/xdg/picom.conf &
 xset s off
 xset -dpms
 exec dwm

@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+# Author: zent
+# File: latestscreenshot
+# Description: print the latest screenshot's path
+# Usage:
+#	latestscreenshot
+
+set -e
+
+depend xargs
+
+scrnpath="$1"
+[ -z $scrnpath ] && scrnpath="$HOME/screenshots"
+
+/usr/bin/ls "$scrnpath" | tail -n1 | xargs -I {} echo "$scrnpath/{}"

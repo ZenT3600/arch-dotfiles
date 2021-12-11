@@ -5,7 +5,7 @@
 #BRIGHTNESS=$(cat $HOME/.brightness)
 #echo $BRIGHTNESS > /sys/class/backlight/intel_backlight/brightness
 
-export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin"
+export PATH="$PATH:/home/zent/.scripts/:/home/zent/.cargo/bin/:/home/zent/.local/bin:/home/zent/go/bin"
 
 reloadwttr
 
@@ -22,7 +22,7 @@ alias la="ls -laH"
 alias ls="ls -lH --color=auto"
 alias ncls="ls --color=never"
 alias inecho="echo -n"
-alias vim="nvim"
+alias vim="nvim -c 'set mouse=a'"
 
 export EDITOR="vim"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -31,7 +31,7 @@ export NNN_TRASH=1
 
 alias scrot="date -Ins | xargs -I {} scrot $HOME/screenshots/{}.png"
 
-setxkbmap it
+setxkbmap us
 PS1=$(tput setaf 2; inecho '['; tput setaf 6; inecho '\u'; tput setaf 4; inecho '@'; tput setaf 6; inecho '\h'; tput setaf 5; inecho ' \W'; tput setaf 2; inecho ']'; tput sgr0; inecho '\$ ')
 
 if [[ -n $SSH_CONNECTION ]]; then
