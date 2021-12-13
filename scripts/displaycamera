@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+# Author: zent
+# File: displaycamera
+# Description: Takes a picture of the computer's camera and displays it on the terminal
+# Usage:
+#	displaycamera
+#	displaycamera /dev/othercamera
+
+set -e
+
+[ -z $1 ] && CAMERA="/dev/video0"
+[ ! -z $1 ] && CAMERA=$1
+
+depend latestscreenshot
+depend devicescreenshot
+depend icat
+
+devicescreenshot $CAMERA && icat $(latestscreenshot)
