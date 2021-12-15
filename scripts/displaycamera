@@ -13,6 +13,6 @@ set -e
 
 depend latestscreenshot
 depend devicescreenshot
-depend icat
+depend timg
 
-devicescreenshot $CAMERA && icat $(latestscreenshot)
+devicescreenshot $CAMERA && timg $(latestscreenshot)
