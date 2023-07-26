@@ -6,7 +6,7 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:/home/zen/.local/bin:$PATH"
 fi
 
-PATH="$HOME/.emacs.d/bin:$PATH:$HOME/.cargo/bin:/opt"
+PATH="$HOME/.emacs.d/bin:$PATH:$HOME/.cargo/bin:/opt:$HOME/.scripts"
 
 autoload -U promptinit; promptinit
 autoload -U colors && colors
