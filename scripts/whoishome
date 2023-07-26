@@ -8,8 +8,7 @@
 
 set -e
 
-[ -z $1 ] && IPRANGE="192.168.1.0/25"
-[ ! -z $1 ] && CAMERA="$1"
+[ -z $1 ] && IPRANGE=$(ip a s wlan0 | grep inet | head -n1 | awk '{print $2}')
 
 depend nmap
 depend awk
