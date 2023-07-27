@@ -6,5 +6,9 @@
 #	readgecos
 #	readgecos other-user
 
+set -e
+
+source $(which _log)
+
 user=$([ -z "$1" ] && whoami || echo $1)
 echo $user | xargs -I {} grep {} /etc/passwd | awk -F: '{print $5}'

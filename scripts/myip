@@ -7,5 +7,7 @@
 
 set -e
 
+source $(which _log)
+
 depend jq
 { ip route get "1.2.3.4" &> /dev/null; } && { curl -s https://api.myip.com | jq -r .ip; } || { echo "Disconnected"; }

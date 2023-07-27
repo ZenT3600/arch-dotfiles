@@ -7,6 +7,8 @@
 
 set -e
 
+source $(which _log)
+
 [ -z $1 ] && script="explain"
 [ ! -z $1 ] && script=$1
 

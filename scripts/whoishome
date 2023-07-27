@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# Author: zent
+# File: whoishome
+# Description: Display all online devices in a give network
+# Usage:
+#	whoishome
+#	whoishome <other.ip.range>
+
+set -e
+
+source $(which _log)
+
+[ -z $1 ] && IPRANGE=$(ip a s wlan0 | grep inet | head -n1 | awk '{print $2}')
+
+depend nmap
+depend awk
+
+echo "Enumerating... "
+outnmap=$(nmap -sn -v "$IPRANGE" -oG -)
+echo "Done."
+echo ""
+echo "$outnmap" | awk '/Up$/{print "IP: ", $2, "\tNAME: ", $3}'

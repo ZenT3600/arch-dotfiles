@@ -8,6 +8,8 @@
 
 set -e
 
+source $(which _log)
+
 [ -z $1 ] && CAMERA="/dev/video0"
 [ ! -z $1 ] && CAMERA=$1
 

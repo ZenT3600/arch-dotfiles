@@ -7,6 +7,8 @@
 
 set -e
 
+source $(which _log)
+
 depend kdeconnect-cli
 depend nc
 depend jq

@@ -7,6 +7,8 @@
 
 set -e
 
+source $(which _log)
+
 DEVICE=$1
 OUTPATH="$HOME/screenshots"
 OUTNAME="$(date -Ins).png"
