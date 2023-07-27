@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+# Author: zent
+# File: tunnel
+# Description: Tunnel the selected port through ngrok and send the URL over via KDEConnect
+# Usage:
+#	  tunnel <protocol> <port>
+
+set -e
+
+depend kdeconnect-cli
+depend nc
+depend jq
+
+DEVICE="4ecff932_801f_4ce9_a847_b7cf73164246"
+PROTOCOL="$1"
+PORT="$2"
+
+ngrok $PROTOCOL $PORT > /dev/null &
+while ! nc -z localhost 4040; do
+  sleep 0.5
+done
+
+REMOTE="$(curl http://localhost:4040/api/tunnels --silent | jq ".tunnels[0].public_url")"
+
+kdeconnect-cli --ping-msg "Tunnel started at: $REMOTE" --device $DEVICE
+kdeconnect-cli --share-text $REMOTE --device $DEVICE
+echo "Tunnel started at: $REMOTE"
+echo "Press enter key to stop..."
+read _
+pkill ngrok
