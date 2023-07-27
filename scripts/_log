@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+# Author: zent
+# File: _log
+# Description: Interal script to log other scripts
+# Usage:
+#	  Don't use it
+
+PROGNAME=$(basename $(caller | awk '{print $2}'))
+LOGFILE="~/.logs/$PROGNAME/$(date +%s%3N)"
+
+mkdir -p ~/.logs/$PROGNAME 2> /dev/null
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>$LOGFiLE 2>&1
