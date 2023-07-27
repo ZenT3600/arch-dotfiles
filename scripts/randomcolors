@@ -1,8 +1,0 @@
-#!/usr/bin/bash
-# Author: zent
-# File: randomcolors
-# Description: Run a random script from my color-motds directory. Used in bashrc for showing pixelart on startup
-# Usage:
-# 	randomcolors
-
-find -L ~/.color-motds -type f | shuf -n 1 | xargs -I {} sh -c "bash {} && echo -e \"\nFile: \$(basename {})\""

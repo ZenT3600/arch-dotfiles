@@ -1,8 +1,0 @@
-#!/usr/bin/bash
-# Author: zent
-# File: reloadwttr
-# Description: Save the weather fetched from wttr.in into a local file
-# Usage:
-#	reloadwttr
-
-ping google.com -c 1 > /dev/null 2>&1 && curl -s wttr.in | awk '{$1=$1};1' | grep '°C' | head -n 1 | awk -F " " '{print $(NF-1)" "$NF}' | sed "s,\x1B\[[0-9;]*m,,g" > $HOME/.wttr.in || echo "Disconnected" > $HOME/.wttr.in
