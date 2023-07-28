@@ -76,4 +76,7 @@ export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+IS_SSH=$(_is_ssh)
+test $? -eq 0 && notify-send "$IS_SSH"
+
 eval "$(starship init zsh)"
