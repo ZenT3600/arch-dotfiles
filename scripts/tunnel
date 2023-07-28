@@ -14,11 +14,12 @@ depend nc
 depend jq
 depend ngrok
 
+LOGFILE="$HOME/.logs/$(basename $0)/$(date +%s%3N).ngrok"
 DEVICE="4ecff932_801f_4ce9_a847_b7cf73164246"
 PROTOCOL="$1"
 PORT="$2"
 
-ngrok $PROTOCOL $PORT > /dev/null &
+ngrok $PROTOCOL $PORT --log "$LOGFILE" > /dev/null &
 while ! nc -z localhost 4040; do
   sleep 0.5
 done
